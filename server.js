@@ -23,7 +23,7 @@ securityMiddlewares(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/v1/auth', auth);
+app.use('/api/auth', auth);
 
 app.use(globalErrorMiddleware);
 

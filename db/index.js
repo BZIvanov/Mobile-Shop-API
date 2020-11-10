@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 mongoose
   .connect(process.env.DB_PATH, {
@@ -10,6 +10,6 @@ mongoose
   .then((connection) => {
     console.log(
       `DB connection successful and ready for ${connection.connections[0].host}`
-        .cyan.underline.bold,
+        .cyan.underline.bold
     );
   });

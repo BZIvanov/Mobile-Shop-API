@@ -34,3 +34,7 @@ Click [here](https://docs.expo.io/workflow/android-studio-emulator/) for a guide
 6. Now select one of your configured devices and click the green play button.
 7. Go back to your project and run npm start.
 8. While the process is running in the same terminal press **a** to install the local project on the emulator device if needed and to run it.
+
+Every next time, when you start the app, first start android studio and the emulator device, then npm start and a for android.
+
+_Hint_ Focus/Click the emulator device and press ctrl + m to open the expo menu. This is useful for example if you want to reload the app.

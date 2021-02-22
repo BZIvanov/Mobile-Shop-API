@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
+import HeaderButton from '../components/HeaderButton';
 import theme from '../theme';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 
@@ -51,7 +53,18 @@ const MealsNavigator = () => {
             const { mealId } = route.params;
             const { title } = MEALS.find((meal) => meal.id === mealId);
 
-            return { title };
+            return {
+              headerTitle: title,
+              headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                  <Item
+                    title='Favorite'
+                    iconName='ios-star'
+                    onPress={() => alert('search')}
+                  />
+                </HeaderButtons>
+              ),
+            };
           }}
         />
       </Stack.Navigator>

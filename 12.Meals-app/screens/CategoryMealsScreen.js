@@ -1,29 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { CATEGORIES } from '../data/dummy-data';
+import { StyleSheet, View, FlatList } from 'react-native';
+import MealItem from '../components/MealItem';
+import { MEALS } from '../data/dummy-data';
 
 // we have access to navigation prop for first level children of the Navigator
 const CategoryMealsScreen = ({ route, navigation }) => {
   const { categoryId } = route.params;
 
-  const selectedCategory = CATEGORIES.find(
-    (category) => category.id === categoryId
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(categoryId) >= 0
   );
+
+  const renderMealItem = (itemData) => {
+    return (
+      <MealItem
+        meal={itemData.item}
+        onSelectMeal={() => {
+          navigation.navigate('MealDetails', { mealId: itemData.item.id });
+        }}
+      />
+    );
+  };
 
   return (
     <View style={styles.screen}>
-      <Text>The Category Meal Screen</Text>
-      <Button
-        title='Go to Details'
-        onPress={() => {
-          navigation.navigate('MealDetails');
-        }}
-      />
-      <Button
-        title='Go Back'
-        onPress={() => {
-          navigation.pop();
-        }}
+      <FlatList
+        data={displayedMeals}
+        renderItem={renderMealItem}
+        style={{ width: '100%' }}
       />
     </View>
   );

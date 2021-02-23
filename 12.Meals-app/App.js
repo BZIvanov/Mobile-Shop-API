@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import DrawerNavigator from './navigation/MealsNavigator';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -23,5 +25,9 @@ export default function App() {
     );
   }
 
-  return <DrawerNavigator />;
+  return (
+    <Provider store={store}>
+      <DrawerNavigator />
+    </Provider>
+  );
 }

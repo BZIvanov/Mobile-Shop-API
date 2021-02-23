@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -13,13 +14,18 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
 import HeaderButton from '../components/HeaderButton';
 import theme from '../theme';
-import { CATEGORIES, MEALS } from '../data/dummy-data';
+import { CATEGORIES } from '../data/dummy-data';
+import { toggleFavorite, setFilters } from '../store/actions/meals';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const MealsNavigator = () => {
+  const meals = useSelector((state) => state.meals.meals);
+  const favMeals = useSelector((state) => state.meals.favoriteMeals);
+  const dispatch = useDispatch();
+
   return (
     <Stack.Navigator
       // this is how we share common styles for different screens
@@ -73,7 +79,8 @@ const MealsNavigator = () => {
         component={MealDetailsScreen}
         options={({ route }) => {
           const { mealId } = route.params;
-          const { title } = MEALS.find((meal) => meal.id === mealId);
+          const { title } = meals.find((meal) => meal.id === mealId);
+          const isFavorite = favMeals.some((meal) => meal.id === mealId);
 
           return {
             headerTitle: title,
@@ -81,8 +88,8 @@ const MealsNavigator = () => {
               <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                   title='Favorite'
-                  iconName='ios-star'
-                  onPress={() => alert('search')}
+                  iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
+                  onPress={() => dispatch(toggleFavorite(mealId))}
                 />
               </HeaderButtons>
             ),
@@ -94,6 +101,10 @@ const MealsNavigator = () => {
 };
 
 const FavoritesNavigator = () => {
+  const meals = useSelector((state) => state.meals.meals);
+  const favMeals = useSelector((state) => state.meals.favoriteMeals);
+  const dispatch = useDispatch();
+
   return (
     <Stack.Navigator
       // this is how we share common styles for different screens
@@ -134,7 +145,8 @@ const FavoritesNavigator = () => {
         component={MealDetailsScreen}
         options={({ route }) => {
           const { mealId } = route.params;
-          const { title } = MEALS.find((meal) => meal.id === mealId);
+          const { title } = meals.find((meal) => meal.id === mealId);
+          const isFavorite = favMeals.some((meal) => meal.id === mealId);
 
           return {
             headerTitle: title,
@@ -142,8 +154,8 @@ const FavoritesNavigator = () => {
               <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                   title='Favorite'
-                  iconName='ios-star'
-                  onPress={() => alert('search')}
+                  iconName={isFavorite ? 'ios-star' : 'ios-star-outline'}
+                  onPress={() => dispatch(toggleFavorite(mealId))}
                 />
               </HeaderButtons>
             ),
@@ -155,6 +167,8 @@ const FavoritesNavigator = () => {
 };
 
 const FiltersNavigator = () => {
+  const dispatch = useDispatch();
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -175,8 +189,6 @@ const FiltersNavigator = () => {
         name='Filters'
         component={FiltersScreen}
         options={({ route, navigation }) => {
-          console.log('R', route);
-          // console.log('N', navigation);
           return {
             headerTitle: 'Filters',
             headerLeft: () => (
@@ -193,7 +205,7 @@ const FiltersNavigator = () => {
                 <Item
                   title='Save'
                   iconName='ios-save'
-                  onPress={() => console.log('Saving filters')}
+                  onPress={() => dispatch(setFilters(route.params.filters))}
                 />
               </HeaderButtons>
             ),

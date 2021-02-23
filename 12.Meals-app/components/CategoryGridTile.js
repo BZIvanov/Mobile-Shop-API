@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   title: {
-    fontFamily: theme.typography.fontRegular,
+    fontFamily: theme.typography.fontBold,
     fontSize: 18,
     textAlign: 'right',
   },

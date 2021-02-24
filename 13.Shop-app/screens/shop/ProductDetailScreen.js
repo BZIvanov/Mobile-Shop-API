@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   StyleSheet,
   ScrollView,
@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { addToCart } from '../../store/actions/cart';
 import theme from '../../theme';
 
 const ProductDetailScreen = ({ route }) => {
@@ -15,6 +16,7 @@ const ProductDetailScreen = ({ route }) => {
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((product) => product.id === productId)
   );
+  const dispatch = useDispatch();
 
   return (
     <ScrollView>
@@ -23,7 +25,7 @@ const ProductDetailScreen = ({ route }) => {
         <Button
           color={theme.palette.primary}
           title='Add To Cart'
-          onPress={() => {}}
+          onPress={() => dispatch(addToCart(selectedProduct))}
         />
       </View>
       <Text style={{ ...styles.price, ...theme.typography.h2 }}>

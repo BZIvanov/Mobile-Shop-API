@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 import CartItem from '../../components/shop/CartItem';
-import { removeFromCart } from '../../store/actions/cart';
+import { removeFromCart, addOrder } from '../../store/actions';
 import theme from '../../theme';
 
 const CartScreen = () => {
@@ -30,6 +30,7 @@ const CartScreen = () => {
           color={theme.palette.secondary}
           title='Order Now'
           disabled={cartItems.length === 0}
+          onPress={() => dispatch(addOrder(cartItems, cartTotalAmount))}
         />
       </View>
       <FlatList

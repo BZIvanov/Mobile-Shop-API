@@ -1,5 +1,5 @@
 import CartItem from '../../models/cart-item';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../types';
+import { ADD_TO_CART, REMOVE_FROM_CART, ADD_ORDER } from '../types';
 
 const initialState = {
   items: {},
@@ -52,6 +52,9 @@ export default (state = initialState, action) => {
         items: updatedCartItems,
         totalAmount: state.totalAmount - selectedItem.productPrice,
       };
+    case ADD_ORDER:
+      // ADD_ORDER is in 2 reducers because of the functionality we want to achieve, more specifically after making order we want to clear the cart
+      return initialState;
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text, FlatList } from 'react-native';
+import OrderItem from '../../components/shop/OrderItem';
 import { removeFromCart, addOrder } from '../../store/actions';
 import theme from '../../theme';
 
@@ -11,7 +12,7 @@ const OrdersScreen = () => {
   return (
     <FlatList
       data={orders}
-      renderItem={(itemData) => <Text>{itemData.item.totalAmount}</Text>}
+      renderItem={(itemData) => <OrderItem item={itemData.item} />}
     />
   );
 };

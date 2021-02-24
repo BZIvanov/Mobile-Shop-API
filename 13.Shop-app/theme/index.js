@@ -26,10 +26,14 @@ export default {
       fontSize: 18,
     },
     h4: {
-      fontFamily: FONT_REGULAR,
+      fontFamily: FONT_BOLD,
       fontSize: 16,
     },
     h5: {
+      fontFamily: FONT_REGULAR,
+      fontSize: 16,
+    },
+    h6: {
       fontFamily: FONT_REGULAR,
       fontSize: 14,
     },

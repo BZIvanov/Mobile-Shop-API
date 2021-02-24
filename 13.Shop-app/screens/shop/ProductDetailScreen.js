@@ -31,7 +31,7 @@ const ProductDetailScreen = ({ route }) => {
       <Text style={{ ...styles.price, ...theme.typography.h2 }}>
         ${selectedProduct.price.toFixed(2)}
       </Text>
-      <Text style={{ ...styles.description, ...theme.typography.h5 }}>
+      <Text style={{ ...styles.description, ...theme.typography.h6 }}>
         {selectedProduct.description}
       </Text>
     </ScrollView>

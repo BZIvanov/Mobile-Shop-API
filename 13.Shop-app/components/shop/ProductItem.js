@@ -30,7 +30,7 @@ const ProductItem = ({ product, onViewDetail, onAddToCart }) => {
             <Text style={{ ...styles.title, ...theme.typography.h3 }}>
               {product.title}
             </Text>
-            <Text style={{ ...styles.price, ...theme.typography.h5 }}>
+            <Text style={{ ...styles.price, ...theme.typography.h6 }}>
               ${product.price.toFixed(2)}
             </Text>
           </View>

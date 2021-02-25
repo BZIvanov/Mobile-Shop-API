@@ -4,4 +4,6 @@ export default {
   Cart: 'Cart',
   Orders: 'Orders',
   Products: 'Products',
+  UserProducts: 'UserProducts',
+  EditProduct: 'EditProduct',
 };

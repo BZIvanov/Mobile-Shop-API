@@ -6,12 +6,12 @@ import {
   View,
   Image,
   Text,
-  Button,
   Platform,
 } from 'react-native';
+import Card from '../UI/Card';
 import theme from '../../theme';
 
-const ProductItem = ({ product, onViewDetail, onAddToCart }) => {
+const ProductItem = ({ product, onSelect, children }) => {
   // below 3 lines are to enable ripple effect for android devices
   let TouchableCmp = TouchableOpacity;
   if (Platform.OS === 'android' && Platform.Version >= 21) {
@@ -20,8 +20,8 @@ const ProductItem = ({ product, onViewDetail, onAddToCart }) => {
 
   return (
     // useForeground will apply the ripple effect for the entire component
-    <View style={styles.product}>
-      <TouchableCmp onPress={onViewDetail} useForeground>
+    <Card customStyles={styles.product}>
+      <TouchableCmp onPress={onSelect} useForeground>
         <View>
           <View style={styles.imageContainer}>
             <Image style={styles.image} source={{ uri: product.imageUrl }} />
@@ -34,33 +34,15 @@ const ProductItem = ({ product, onViewDetail, onAddToCart }) => {
               ${product.price.toFixed(2)}
             </Text>
           </View>
-          <View style={styles.actions}>
-            <Button
-              color={theme.palette.primary}
-              title='View Details'
-              onPress={onViewDetail}
-            />
-            <Button
-              color={theme.palette.primary}
-              title='To Cart'
-              onPress={onAddToCart}
-            />
-          </View>
+          <View style={styles.actions}>{children}</View>
         </View>
       </TouchableCmp>
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   product: {
-    shadowColor: theme.palette.black,
-    shadowOpacity: 0.27,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: theme.palette.white,
     height: 300,
     margin: 20,
     overflow: 'hidden',
@@ -78,7 +60,7 @@ const styles = StyleSheet.create({
   },
   details: {
     alignItems: 'center',
-    height: '15%',
+    height: '17%',
     padding: 10,
   },
   title: {
@@ -91,7 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '25%',
+    height: '23%',
     paddingHorizontal: 25,
   },
 });

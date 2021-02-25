@@ -1,18 +1,14 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Platform,
-  Button,
-} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import CartItem from './CartItem';
+import Card from '../UI/Card';
 import theme from '../../theme';
 
 const OrderItem = ({ item }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
-    <View style={styles.orderItem}>
+    <Card customStyles={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={{ ...theme.typography.h4 }}>
           ${item.totalAmount.toFixed(2)}
@@ -21,20 +17,24 @@ const OrderItem = ({ item }) => {
           {item.readableDate}
         </Text>
       </View>
-      <Button color={theme.palette.primary} title='Show Details' />
-    </View>
+      <Button
+        color={theme.palette.primary}
+        title={showDetails ? 'Hide Details' : 'Show Details'}
+        onPress={() => setShowDetails((prevState) => !prevState)}
+      />
+      {showDetails && (
+        <View style={styles.detailItems}>
+          {item.items.map((cartItem) => (
+            <CartItem key={cartItem.productId} item={cartItem} />
+          ))}
+        </View>
+      )}
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   orderItem: {
-    shadowColor: theme.palette.black,
-    shadowOpacity: 0.27,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: theme.palette.white,
     margin: 20,
     padding: 10,
     alignItems: 'center',
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
   },
   date: {
     color: '#888',
+  },
+  detailItems: {
+    width: '100%',
   },
 });
 

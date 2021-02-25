@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 import CartItem from '../../components/shop/CartItem';
+import Card from '../../components/UI/Card';
 import { removeFromCart, addOrder } from '../../store/actions';
 import theme from '../../theme';
 
@@ -21,10 +22,12 @@ const CartScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.summary}>
+      <Card customStyles={styles.summary}>
         <Text style={{ ...theme.typography.h3 }}>
           Total:{' '}
-          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
+          <Text style={styles.amount}>
+            ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+          </Text>
         </Text>
         <Button
           color={theme.palette.secondary}
@@ -32,7 +35,7 @@ const CartScreen = () => {
           disabled={cartItems.length === 0}
           onPress={() => dispatch(addOrder(cartItems, cartTotalAmount))}
         />
-      </View>
+      </Card>
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.productId}
@@ -57,13 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
     padding: 10,
-    shadowColor: theme.palette.black,
-    shadowOpacity: 0.27,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: theme.palette.white,
   },
   amount: {
     color: theme.palette.primary,

@@ -20,13 +20,15 @@ const CartItem = ({ item, onRemove }) => {
       </View>
       <View style={styles.itemData}>
         <Text style={{ ...theme.typography.h4 }}>${item.sum.toFixed(2)}</Text>
-        <TouchableOpacity onPress={onRemove} style={styles.deleteButton}>
-          <Ionicons
-            name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
-            size={23}
-            color='red'
-          />
-        </TouchableOpacity>
+        {onRemove && (
+          <TouchableOpacity onPress={onRemove} style={styles.deleteButton}>
+            <Ionicons
+              name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'}
+              size={23}
+              color='red'
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

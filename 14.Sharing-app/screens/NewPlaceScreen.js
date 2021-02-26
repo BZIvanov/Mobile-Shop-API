@@ -9,6 +9,7 @@ import {
   Button,
 } from 'react-native';
 import ImgPicker from '../components/ImgPicker';
+import LocationPicker from '../components/LocationPicker';
 import { addPlace } from '../store/actions/places';
 import theme from '../theme';
 
@@ -40,6 +41,7 @@ const NewPlaceScreen = ({ navigation }) => {
           onChangeText={titleChangeHandler}
         />
         <ImgPicker onImageTaken={imageTakenHandler} />
+        <LocationPicker />
         <Button
           title='Save Place'
           color={theme.palette.primary}

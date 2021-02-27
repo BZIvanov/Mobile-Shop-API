@@ -19,6 +19,7 @@ Open the app and scan the code from VSCode/terminal to open the development app 
 
 - **.expo** - this folder contains configurations used by expo and we should not modify it.
 - **assets** - this folder contains assets such as images and other stuff. Here we can add our own if necessary.
+- **app.json** - this file contains configurations and is especially important to be correctly configured before deployment of the app.
 
 ## Emulator
 

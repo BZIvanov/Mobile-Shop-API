@@ -16,6 +16,7 @@ import theme from '../theme';
 const NewPlaceScreen = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState();
   const dispatch = useDispatch();
 
   const titleChangeHandler = (text) => {
@@ -26,8 +27,12 @@ const NewPlaceScreen = ({ navigation }) => {
     setSelectedImage(imagePath);
   };
 
+  const selectedLocationHandler = (location) => {
+    setSelectedLocation(location);
+  };
+
   const savePlaceHandler = () => {
-    dispatch(addPlace(title, selectedImage));
+    dispatch(addPlace(title, selectedImage, selectedLocation));
     navigation.goBack();
   };
 
@@ -41,7 +46,7 @@ const NewPlaceScreen = ({ navigation }) => {
           onChangeText={titleChangeHandler}
         />
         <ImgPicker onImageTaken={imageTakenHandler} />
-        <LocationPicker />
+        <LocationPicker onSelectLocation={selectedLocationHandler} />
         <Button
           title='Save Place'
           color={theme.palette.primary}

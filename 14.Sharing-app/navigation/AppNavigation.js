@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text, TouchableOpacity } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,6 +11,7 @@ import MapScreen from '../screens/MapScreen';
 
 import NAVIGATION from '../constants/navigation';
 import HeaderButton from '../components/HeaderButton';
+import TextHeaderButton from '../components/TextHeaderButton';
 import theme from '../theme';
 
 const Stack = createStackNavigator();
@@ -58,7 +59,22 @@ const AppNavigation = () => {
             title: 'Add Place',
           }}
         />
-        <Stack.Screen name={NAVIGATION.Map} component={MapScreen} />
+        <Stack.Screen
+          name={NAVIGATION.Map}
+          component={MapScreen}
+          options={({ route, navigation }) => {
+            const handleSave = () => {
+              if (route.params && route.params.coords) {
+                navigation.navigate(NAVIGATION.NewPlace, route.params.coords);
+              }
+            };
+
+            return {
+              title: 'Map',
+              headerRight: () => <TextHeaderButton onSaveHandle={handleSave} />,
+            };
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

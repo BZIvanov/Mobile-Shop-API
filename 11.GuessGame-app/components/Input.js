@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
+import theme from '../theme';
 
 const Input = ({ customStyles, ...rest }) => {
   return <TextInput {...rest} style={{ ...styles.input, ...customStyles }} />;
@@ -7,10 +8,10 @@ const Input = ({ customStyles, ...rest }) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 30,
+    height: theme.spacing(4),
     borderBottomColor: 'grey',
     borderBottomWidth: 1,
-    marginVertical: 10,
+    marginVertical: theme.spacing(1.2),
   },
 });
 

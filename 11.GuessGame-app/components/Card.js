@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import theme from '../theme';
 
 const Card = ({ children, customStyles }) => {
   return <View style={{ ...styles.card, ...customStyles }}>{children}</View>;
@@ -7,7 +8,7 @@ const Card = ({ children, customStyles }) => {
 
 const styles = StyleSheet.create({
   card: {
-    shadowColor: 'black', // ios
+    shadowColor: theme.palette.black, // ios
     shadowOffset: {
       width: 0,
       height: 2,
@@ -15,8 +16,8 @@ const styles = StyleSheet.create({
     shadowRadius: 6, // ios
     shadowOpacity: 0.27, // ios
     elevation: 5, // android
-    backgroundColor: 'white',
-    padding: 20,
+    backgroundColor: theme.palette.white,
+    padding: theme.spacing(2.5),
     borderRadius: 10,
   },
 });

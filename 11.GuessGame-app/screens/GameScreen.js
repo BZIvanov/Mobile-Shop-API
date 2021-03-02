@@ -12,6 +12,7 @@ import NumberContainer from '../components/NumberContainer';
 import MainButton from '../components/MainButton';
 import BodyText from '../components/BodyText';
 import Card from '../components/Card';
+import theme from '../theme';
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -93,14 +94,17 @@ const GameScreen = ({ userChoice, onGameOver }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: 10,
+    padding: theme.spacing(1.2),
     alignItems: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: Dimensions.get('window').height > 600 ? 20 : 5,
-    width: 400,
+    marginTop:
+      Dimensions.get('window').height > 600
+        ? theme.spacing(2.5)
+        : theme.spacing(0.6),
+    width: theme.spacing(50),
     maxWidth: '90%',
   },
   listContainer: {
@@ -114,9 +118,9 @@ const styles = StyleSheet.create({
   listItem: {
     borderColor: '#ccc',
     borderWidth: 1,
-    padding: 15,
-    marginVertical: 10,
-    backgroundColor: 'white',
+    padding: theme.spacing(2),
+    marginVertical: theme.spacing(1.2),
+    backgroundColor: theme.palette.white,
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '50%',

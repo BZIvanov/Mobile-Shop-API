@@ -1,15 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
+import theme from '../theme';
 
-const BodyText = ({ customStyles, children }) => {
-  return <Text style={{ ...styles.body, ...customStyles }}>{children}</Text>;
+const BodyText = ({ variant = 'h6', customStyles, children }) => {
+  return (
+    <Text style={[theme.typography[variant], customStyles]}>{children}</Text>
+  );
 };
-
-// this is how we can easily reuse this font family instead of applying it individually for every Text component
-const styles = StyleSheet.create({
-  body: {
-    fontFamily: 'open-sans-regular',
-  },
-});
 
 export default BodyText;

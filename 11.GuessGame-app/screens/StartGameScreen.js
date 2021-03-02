@@ -16,7 +16,7 @@ import Input from '../components/Input';
 import BodyText from '../components/BodyText';
 import NumberContainer from '../components/NumberContainer';
 import MainButton from '../components/MainButton';
-import colors from '../constants/colors';
+import theme from '../theme';
 
 const StartGameScreen = ({ onStartGame }) => {
   const [enteredValue, setEnteredValue] = useState('');
@@ -104,14 +104,14 @@ const StartGameScreen = ({ onStartGame }) => {
                   <Button
                     title='Reset'
                     onPress={resetInputHandler}
-                    color={colors.accent}
+                    color={theme.palette.secondary}
                   />
                 </View>
                 <View style={{ width: buttonWidth }}>
                   <Button
                     title='Confirm'
                     onPress={confirmInputHandler}
-                    color={colors.primary}
+                    color={theme.palette.primary}
                   />
                 </View>
               </View>
@@ -127,32 +127,31 @@ const StartGameScreen = ({ onStartGame }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: 10,
+    padding: theme.spacing(1.2),
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
-    marginVertical: 10,
-    fontFamily: 'open-sans-bold', // bold is achieved by bold font, not fontWeight property as in normal css
+    marginVertical: theme.spacing(1.2),
+    ...theme.typography.h2,
   },
   inputContainer: {
     width: '80%',
     maxWidth: '95%',
-    minWidth: 300,
+    minWidth: theme.spacing(37.5),
     alignItems: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
+    paddingHorizontal: theme.spacing(2),
   },
   input: {
-    width: 50,
+    width: theme.spacing(6.3),
     textAlign: 'center',
   },
   summaryContainer: {
-    marginTop: 20,
+    marginTop: theme.spacing(2.5),
     alignItems: 'center',
   },
 });

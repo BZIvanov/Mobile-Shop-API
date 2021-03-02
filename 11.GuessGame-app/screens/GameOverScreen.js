@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Image, Text, Dimensions } from 'react-native';
 import BodyText from '../components/BodyText';
 import MainButton from '../components/MainButton';
-import colors from '../constants/colors';
+import theme from '../theme';
 
 const GameOverScreen = ({ rounds, userNumber, onRestart }) => {
   return (
     <View style={styles.screen}>
-      <BodyText>Game Over</BodyText>
+      <BodyText variant='h2'>Game Over</BodyText>
       <View style={styles.imageContainer}>
         <Image
           source={require('../assets/success.png')}
@@ -15,7 +15,7 @@ const GameOverScreen = ({ rounds, userNumber, onRestart }) => {
           style={styles.image}
         />
       </View>
-      <BodyText customStyles={styles.result}>
+      <BodyText variant='h5' customStyles={styles.result}>
         Your phone needed <Text style={styles.highlight}>{rounds}</Text> rounds
         to guess the number <Text style={styles.highlight}>{userNumber}</Text>
       </BodyText>
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    width: Dimensions.get('window').width * 0.7, // this calculation runs only once, for example it won't recalculate on device rotation
-    height: Dimensions.get('window').width * 0.7,
-    borderRadius: (Dimensions.get('window').width * 0.7) / 2,
+    width: Dimensions.get('window').width * 0.5, // this calculation runs only once, for example it won't recalculate on device rotation
+    height: Dimensions.get('window').width * 0.5,
+    borderRadius: (Dimensions.get('window').width * 0.5) / 2,
     borderWidth: 3,
-    borderColor: 'black',
+    borderColor: theme.palette.black,
     overflow: 'hidden',
   },
   image: {
@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   highlight: {
-    color: colors.primary,
-    fontFamily: 'open-sans-bold',
+    color: theme.palette.primary,
+    ...theme.typography.h6,
   },
   result: {
     textAlign: 'center',
-    marginVertical: 10,
+    marginVertical: theme.spacing(1.2),
   },
 });
 

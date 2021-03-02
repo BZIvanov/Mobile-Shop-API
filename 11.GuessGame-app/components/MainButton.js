@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
-import colors from '../constants/colors';
+import theme from '../theme';
 
 const MainButton = ({ children, onPress }) => {
   return (
@@ -14,15 +14,14 @@ const MainButton = ({ children, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.primary,
-    paddingVertical: 12,
-    paddingHorizontal: 30,
+    backgroundColor: theme.palette.primary,
+    paddingVertical: theme.spacing(1.5),
+    paddingHorizontal: theme.spacing(4),
     borderRadius: 25,
   },
   buttonText: {
-    color: 'white',
-    fontFamily: 'open-sans-regular',
-    fontSize: 18,
+    color: theme.palette.white,
+    ...theme.typography.h4,
   },
 });
 

@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Button, Modal } from 'react-native';
 
-const GoalInput = ({ onAddGoal, onCancel, visible }) => {
-  const [enteredGoal, setEnteredGoal] = useState('');
+const Input = ({ onAddItem, onCancel, visible }) => {
+  const [item, setItem] = useState('');
 
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
+  const itemInputHandler = (text) => {
+    setItem(text);
   };
 
-  const addGoalHandler = () => {
-    onAddGoal(enteredGoal);
-    setEnteredGoal('');
+  const addItemHandler = () => {
+    onAddItem(item);
+    setItem('');
   };
 
   return (
     <Modal visible={visible} animationType='slide'>
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder='Course Goal'
+          placeholder='Add Item'
           style={styles.input}
-          onChangeText={goalInputHandler}
-          value={enteredGoal}
+          onChangeText={itemInputHandler}
+          value={item}
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.button}>
             <Button title='CANCEL' onPress={onCancel} color='red' />
           </View>
           <View style={styles.button}>
-            <Button title='ADD' onPress={addGoalHandler} />
+            <Button title='ADD' onPress={addItemHandler} />
           </View>
         </View>
       </View>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoalInput;
+export default Input;

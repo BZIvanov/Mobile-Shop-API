@@ -1,47 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList, Button } from 'react-native';
-import GoalInput from './components/GoalInput';
-import GoalItem from './components/GoalItem';
+import Input from './components/Input';
+import Item from './components/Item';
 
 export default function App() {
-  const [courseGoals, setCourseGoals] = useState([]);
+  const [items, setItems] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
 
-  const addGoalHandler = (goalTitle) => {
-    setCourseGoals((currentGoals) => [
-      ...currentGoals,
-      { id: Math.random().toString(), value: goalTitle },
+  const addItemHandler = (text) => {
+    setItems((currentItems) => [
+      ...currentItems,
+      { id: Math.random().toString(), value: text },
     ]);
     setIsAddMode(false);
   };
 
-  const removeGoalHandler = (goalId) => {
-    setCourseGoals((currentGoals) =>
-      currentGoals.filter((goal) => goal.id !== goalId)
-    );
+  const removeItemHandler = (id) => {
+    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
   };
 
-  const cancelGoalAddHandler = () => {
+  const cancelItemAddHandler = () => {
     setIsAddMode(false);
   };
 
   return (
     <View style={styles.screen}>
-      <Button title='Add new goal' onPress={() => setIsAddMode(true)} />
-      <GoalInput
+      <Button title='Add Item' onPress={() => setIsAddMode(true)} />
+      <Input
         visible={isAddMode}
-        onAddGoal={addGoalHandler}
-        onCancel={cancelGoalAddHandler}
+        onAddItem={addItemHandler}
+        onCancel={cancelItemAddHandler}
       />
       <FlatList
-        data={courseGoals}
+        data={items}
         renderItem={(itemData) => (
-          <GoalItem
-            title={itemData.item.value}
-            id={itemData.item.id}
-            onDelete={removeGoalHandler}
-          />
+          <Item item={itemData.item} onDelete={removeItemHandler} />
         )}
       />
       <StatusBar style='auto' />

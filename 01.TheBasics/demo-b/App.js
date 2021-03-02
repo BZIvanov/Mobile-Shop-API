@@ -10,27 +10,27 @@ import {
 } from 'react-native';
 
 export default function App() {
-  const [enteredGoal, setEnteredGoal] = useState('');
-  const [courseGoals, setCourseGoals] = useState([]);
+  const [item, setItem] = useState('');
+  const [items, setItems] = useState([]);
 
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
+  const itemInputHandler = (text) => {
+    setItem(text);
   };
 
-  const addGoalHandler = () => {
-    setCourseGoals((currentGoals) => [...currentGoals, enteredGoal]);
+  const addItemHandler = () => {
+    setItems((currentItems) => [...currentItems, item]);
   };
 
   return (
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder='Course Goal'
+          placeholder='Add Item'
           style={styles.input}
-          onChangeText={goalInputHandler}
-          value={enteredGoal}
+          onChangeText={itemInputHandler}
+          value={item}
         />
-        <Button title='ADD' onPress={addGoalHandler} />
+        <Button title='ADD' onPress={addItemHandler} />
       </View>
       {/*
         By default views in react native are not scrollable, we can change that with ScrollView component
@@ -38,9 +38,9 @@ export default function App() {
         solution for that is using FlatList component
       */}
       <ScrollView>
-        {courseGoals.map((goal) => (
-          <View key={goal} style={styles.listItem}>
-            <Text>{goal}</Text>
+        {items.map((i) => (
+          <View key={i} style={styles.listItem}>
+            <Text>{i}</Text>
           </View>
         ))}
       </ScrollView>

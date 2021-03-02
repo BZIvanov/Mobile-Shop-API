@@ -6,7 +6,7 @@ export default function App() {
   const [text, setText] = useState('Hello world!');
 
   return (
-    // view is acting as div in normal react app
+    // view is acting as div in normal react app, most of the stylings are usually used on View component
     <View style={styles.container}>
       {/* any text must be placed in Text tag */}
       <Text>{text}</Text>

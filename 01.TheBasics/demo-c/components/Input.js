@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 
-const GoalInput = ({ onAddGoal }) => {
-  const [enteredGoal, setEnteredGoal] = useState('dawd');
+const Input = ({ onAddItem }) => {
+  const [item, setItem] = useState('dawd');
 
-  const goalInputHandler = (enteredText) => {
-    setEnteredGoal(enteredText);
+  const itemInputHandler = (enteredText) => {
+    setItem(enteredText);
   };
 
   return (
     <View style={styles.inputContainer}>
       <TextInput
-        placeholder='Course Goal'
+        placeholder='Add Item'
         style={styles.input}
-        onChangeText={goalInputHandler}
-        value={enteredGoal}
+        onChangeText={itemInputHandler}
+        value={item}
       />
-      <Button title='ADD' onPress={() => onAddGoal(enteredGoal)} />
+      <Button title='ADD' onPress={() => onAddItem(item)} />
     </View>
   );
 };
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoalInput;
+export default Input;

@@ -27,7 +27,7 @@ const StartGameScreen = ({ onStartGame }) => {
   );
 
   useEffect(() => {
-    // with this event on Dimensions we can recalculate values
+    // with this event on Dimensions we can recalculate values, which is usefull in case of rotation of the device
     const updateLayout = () => {
       setButtonWidth(Dimensions.get('window').width / 4);
     };
@@ -77,6 +77,7 @@ const StartGameScreen = ({ onStartGame }) => {
 
   return (
     <ScrollView>
+      {/* keyboard avoiding view is especially helpful for ios. It will make sure the keyboard doesn't cover the input field */}
       <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={30}>
         <TouchableWithoutFeedback
           onPress={() => {

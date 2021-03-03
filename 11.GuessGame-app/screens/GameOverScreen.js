@@ -7,7 +7,7 @@ import theme from '../theme';
 const GameOverScreen = ({ rounds, userNumber, onRestart }) => {
   return (
     <View style={styles.screen}>
-      <BodyText variant='h2'>Game Over</BodyText>
+      <BodyText variant='h1'>Game Over</BodyText>
       <View style={styles.imageContainer}>
         <Image
           source={require('../assets/success.png')}
@@ -15,11 +15,11 @@ const GameOverScreen = ({ rounds, userNumber, onRestart }) => {
           style={styles.image}
         />
       </View>
-      <BodyText variant='h5' customStyles={styles.result}>
+      <BodyText variant='h4' customStyles={styles.result}>
         Your phone needed <Text style={styles.highlight}>{rounds}</Text> rounds
         to guess the number <Text style={styles.highlight}>{userNumber}</Text>
       </BodyText>
-      <MainButton onPress={onRestart}>NEW GAME</MainButton>
+      <MainButton onPress={onRestart}>START NEW GAME</MainButton>
     </View>
   );
 };
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
+    marginVertical: theme.spacing(2),
     width: Dimensions.get('window').width * 0.5, // this calculation runs only once, for example it won't recalculate on device rotation
     height: Dimensions.get('window').width * 0.5,
     borderRadius: (Dimensions.get('window').width * 0.5) / 2,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
   highlight: {
     color: theme.palette.primary,
-    ...theme.typography.h6,
+    ...theme.typography.h4,
   },
   result: {
     textAlign: 'center',

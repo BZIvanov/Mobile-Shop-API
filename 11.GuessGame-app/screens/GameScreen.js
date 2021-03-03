@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   listItem: {
-    borderColor: '#ccc',
+    borderColor: theme.palette.grey,
     borderWidth: 1,
     padding: theme.spacing(2),
     marginVertical: theme.spacing(1.2),

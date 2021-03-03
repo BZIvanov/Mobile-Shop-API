@@ -3,17 +3,17 @@ import { StyleSheet, View } from 'react-native';
 import theme from '../theme';
 
 const Card = ({ children, customStyles }) => {
-  return <View style={{ ...styles.card, ...customStyles }}>{children}</View>;
+  return <View style={{ ...styles.wrapper, ...customStyles }}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
-  card: {
+  wrapper: {
     shadowColor: theme.palette.black, // ios
     shadowOffset: {
       width: 0,
       height: 2,
     }, // ios
-    shadowRadius: 6, // ios
+    shadowRadius: 7, // ios
     shadowOpacity: 0.27, // ios
     elevation: 5, // android
     backgroundColor: theme.palette.white,

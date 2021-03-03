@@ -9,7 +9,7 @@ const Input = ({ customStyles, ...rest }) => {
 const styles = StyleSheet.create({
   input: {
     height: theme.spacing(4),
-    borderBottomColor: 'grey',
+    borderBottomColor: theme.palette.grey,
     borderBottomWidth: 1,
     marginVertical: theme.spacing(1.2),
   },

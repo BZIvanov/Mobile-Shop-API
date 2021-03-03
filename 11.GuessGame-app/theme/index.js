@@ -7,6 +7,7 @@ export default {
     secondary: '#c717fc',
     black: '#000',
     white: '#fff',
+    grey: '#bbb',
   },
   typography: {
     fontRegular: 'open-sans-regular',

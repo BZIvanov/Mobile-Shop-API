@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: '100%',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.palette.grey,
     borderRadius: 10,
     overflow: 'hidden',
   },
@@ -68,10 +68,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   title: {
-    fontFamily: theme.typography.fontBold,
-    fontSize: 20,
     color: theme.palette.white,
     textAlign: 'center',
+    ...theme.typography.h2,
   },
 });
 

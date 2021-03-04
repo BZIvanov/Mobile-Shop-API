@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Platform } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
+
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
+
 import HeaderButton from '../components/HeaderButton';
+import { toggleFavorite, setFilters } from '../store/actions/meals';
+import NAVIGATION from '../constants/navigation';
 import theme from '../theme';
 import { CATEGORIES } from '../data/dummy-data';
-import { toggleFavorite, setFilters } from '../store/actions/meals';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-const MealsNavigator = () => {
+const MealsStackNavigator = () => {
   const meals = useSelector((state) => state.meals.meals);
   const favMeals = useSelector((state) => state.meals.favoriteMeals);
   const dispatch = useDispatch();
@@ -44,7 +47,7 @@ const MealsNavigator = () => {
       }}
     >
       <Stack.Screen
-        name='Categories'
+        name={NAVIGATION.Categories}
         component={CategoriesScreen}
         options={({ navigation }) => {
           return {
@@ -62,7 +65,7 @@ const MealsNavigator = () => {
         }}
       />
       <Stack.Screen
-        name='CategoryMeals'
+        name={NAVIGATION.CategoryMeals}
         component={CategoryMealsScreen}
         // if we use as function we can get the same props as in the components
         options={({ route }) => {
@@ -75,7 +78,7 @@ const MealsNavigator = () => {
         }}
       />
       <Stack.Screen
-        name='MealDetails'
+        name={NAVIGATION.MealDetails}
         component={MealDetailsScreen}
         options={({ route }) => {
           const { mealId } = route.params;
@@ -100,7 +103,7 @@ const MealsNavigator = () => {
   );
 };
 
-const FavoritesNavigator = () => {
+const FavoritesStackNavigator = () => {
   const meals = useSelector((state) => state.meals.meals);
   const favMeals = useSelector((state) => state.meals.favoriteMeals);
   const dispatch = useDispatch();
@@ -123,7 +126,7 @@ const FavoritesNavigator = () => {
       }}
     >
       <Stack.Screen
-        name='Favorites'
+        name={NAVIGATION.Favorites}
         component={FavoritesScreen}
         options={({ navigation }) => {
           return {
@@ -141,7 +144,7 @@ const FavoritesNavigator = () => {
         }}
       />
       <Stack.Screen
-        name='MealDetails'
+        name={NAVIGATION.MealDetails}
         component={MealDetailsScreen}
         options={({ route }) => {
           const { mealId } = route.params;
@@ -166,7 +169,7 @@ const FavoritesNavigator = () => {
   );
 };
 
-const FiltersNavigator = () => {
+const FiltersStackNavigator = () => {
   const dispatch = useDispatch();
 
   return (
@@ -186,7 +189,7 @@ const FiltersNavigator = () => {
       }}
     >
       <Stack.Screen
-        name='Filters'
+        name={NAVIGATION.Filters}
         component={FiltersScreen}
         options={({ route, navigation }) => {
           return {
@@ -221,15 +224,15 @@ const TabsNavigator = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: theme.palette.accent,
+        activeTintColor: theme.palette.secondary,
         labelStyle: {
           fontFamily: theme.typography.fontBold,
         },
       }}
     >
       <Tab.Screen
-        name='Meals'
-        component={MealsNavigator}
+        name={NAVIGATION.Categories}
+        component={MealsStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name='ios-restaurant' size={size} color={color} />
@@ -237,8 +240,8 @@ const TabsNavigator = () => {
         }}
       />
       <Tab.Screen
-        name='Favorites'
-        component={FavoritesNavigator}
+        name={NAVIGATION.Favorites}
+        component={FavoritesStackNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name='ios-star' size={size} color={color} />
@@ -257,14 +260,17 @@ const DrawerNavigator = () => (
         width: 270,
       }}
       drawerContentOptions={{
-        activeTintColor: theme.palette.accent,
+        activeTintColor: theme.palette.secondary,
         labelStyle: {
           fontFamily: theme.typography.fontBold,
         },
       }}
     >
-      <Drawer.Screen name='Meals' component={TabsNavigator} />
-      <Drawer.Screen name='Filters' component={FiltersNavigator} />
+      <Drawer.Screen name={NAVIGATION.Categories} component={TabsNavigator} />
+      <Drawer.Screen
+        name={NAVIGATION.Filters}
+        component={FiltersStackNavigator}
+      />
     </Drawer.Navigator>
   </NavigationContainer>
 );

@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import MealList from '../components/MealList';
 
 // we have access to navigation prop for first level children of the Navigator
-const CategoryMealsScreen = ({ route, navigation }) => {
+const CategoryMealsScreen = ({ route }) => {
   const { categoryId } = route.params;
 
   const availableMeals = useSelector((state) => state.meals.filteredMeals);
@@ -21,7 +21,7 @@ const CategoryMealsScreen = ({ route, navigation }) => {
     );
   }
 
-  return <MealList listData={displayedMeals} navigation={navigation} />;
+  return <MealList listData={displayedMeals} />;
 };
 
 const styles = StyleSheet.create({

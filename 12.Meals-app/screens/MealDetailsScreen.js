@@ -38,13 +38,12 @@ const styles = StyleSheet.create({
   },
   details: {
     flexDirection: 'row',
-    padding: 15,
+    padding: theme.spacing(2),
     justifyContent: 'space-around',
   },
   title: {
-    fontFamily: theme.typography.fontBold,
-    fontSize: 22,
     textAlign: 'center',
+    ...theme.typography.h1,
   },
 });
 

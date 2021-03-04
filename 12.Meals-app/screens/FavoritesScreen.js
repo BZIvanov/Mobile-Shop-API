@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import MealList from '../components/MealList';
 
-const FavoritesScreen = ({ navigation }) => {
+const FavoritesScreen = () => {
   const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
 
   if (favoriteMeals.length < 1) {
@@ -16,7 +16,7 @@ const FavoritesScreen = ({ navigation }) => {
     );
   }
 
-  return <MealList listData={favoriteMeals} navigation={navigation} />;
+  return <MealList listData={favoriteMeals} />;
 };
 
 const styles = StyleSheet.create({

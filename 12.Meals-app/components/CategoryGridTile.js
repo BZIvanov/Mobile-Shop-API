@@ -29,8 +29,8 @@ const CategoryGridTile = ({ title, color, onSelect }) => {
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 15,
-    height: 150,
+    margin: theme.spacing(2),
+    height: theme.spacing(18.8),
     borderRadius: 10,
     overflow:
       Platform.OS === 'android' && Platform.Version >= 21
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 10,
-    padding: 15,
-    shadowColor: 'black',
+    padding: theme.spacing(2),
+    shadowColor: theme.palette.black,
     shadowOpacity: 0.27,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
@@ -50,9 +50,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   title: {
-    fontFamily: theme.typography.fontBold,
-    fontSize: 18,
     textAlign: 'right',
+    ...theme.typography.h3,
   },
 });
 

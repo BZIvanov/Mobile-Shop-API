@@ -52,10 +52,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: theme.typography.fontBold,
-    fontSize: 22,
     margin: 20,
     textAlign: 'center',
+    ...theme.typography.h1,
   },
 });
 

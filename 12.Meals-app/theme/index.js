@@ -24,6 +24,18 @@ export default {
       fontFamily: FONT_BOLD,
       fontSize: 18,
     },
+    h4: {
+      fontFamily: FONT_REGULAR,
+      fontSize: 18,
+    },
+    h5: {
+      fontFamily: FONT_REGULAR,
+      fontSize: 16,
+    },
+    h6: {
+      fontFamily: FONT_REGULAR,
+      fontSize: 14,
+    },
   },
   // margin, padding, width, height
   spacing: (value) => Math.round(value * 8),
